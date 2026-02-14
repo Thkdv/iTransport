@@ -1,0 +1,146 @@
+body {
+    background-color: #7AA167;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.Logo {
+    margin-right: auto;
+    font-size: 18px;
+}
+
+.NavigationBar {
+    background-color: #42682f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    color: white;
+    border-radius: 12px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+#menuToggle {
+    display: none;
+}
+
+.Hamburger {
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+    margin-left: auto;
+}
+
+.SideMenu {
+    position: fixed;
+    top: 0;
+    right: -50%;
+    width: 25%;
+    height: 100%;
+    background-color: #42682f;
+    padding: 20px;
+    color: white;
+    border-left: 1px solid #2f4c24;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+    transition: right 0.5s ease;
+    z-index: 1000;
+}
+
+.SideMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.SideMenu li {
+    margin-bottom: 20px;
+}
+
+.SideMenu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.SideMenu a:hover {
+    text-decoration: underline;
+}
+
+#menuToggle:checked + .Hamburger + .SideMenu {
+    right: 0;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    z-index: 1; 
+}
+
+.Map img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.BookingBar {
+    background-color: #42682f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    color: white;
+    border-radius: 12px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.BookingBar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.LocationRow {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.DirectionButton {
+    background-color: rgb(17, 72, 17);
+    border-radius: 12px;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: white;
+}
+
+#User_Location, #User_DropOff {
+    background-color: white;
+    color: gray;
+    border-radius: 12px;
+    padding: 5px 10px;
+    width: 50%;
+    box-sizing: border-box; 
+    border: none;
+}
+
+.ModesOfTranspo {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.BorderFortranspoTypes {
+    background-color: rgb(17, 72, 17);
+    border-radius: 12px;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
