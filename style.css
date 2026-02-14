@@ -4,11 +4,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.Logo {
-    margin-right: auto;
-    font-size: 18px;
-}
-
 .NavigationBar {
     background-color: #42682f;
     display: flex;
@@ -17,22 +12,14 @@ body {
     padding: 12px 24px;
     color: white;
     border-radius: 12px;
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: 5px;
     margin-bottom: 10px;
+    z-index: 2000;
 }
 
-#menuToggle {
-    display: none;
-}
-
-.Hamburger {
-    font-size: 24px;
-    cursor: pointer;
-    user-select: none;
-    margin-left: auto;
-}
+.Logo { margin-right: auto; font-size: 18px; }
+#menuToggle { display: none; }
+.Hamburger { font-size: 24px; cursor: pointer; user-select: none; margin-left: auto; }
 
 .SideMenu {
     position: fixed;
@@ -43,104 +30,52 @@ body {
     background-color: #42682f;
     padding: 20px;
     color: white;
-    border-left: 1px solid #2f4c24;
-    box-shadow: -2px 0 8px rgba(0,0,0,0.2);
     transition: right 0.5s ease;
-    z-index: 1000;
+    z-index: 3000;
 }
 
-.SideMenu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.SideMenu li {
-    margin-bottom: 20px;
-}
-
-.SideMenu a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.SideMenu a:hover {
-    text-decoration: underline;
-}
-
-#menuToggle:checked + .Hamburger + .SideMenu {
-    right: 0;
-}
+#menuToggle:checked + .Hamburger + .SideMenu { right: 0; }
+.SideMenu ul { list-style: none; padding: 0; }
+.SideMenu li { margin-bottom: 20px; }
+.SideMenu a { color: white; text-decoration: none; font-size: 18px; }
 
 #map {
     height: 400px;
-    width: 100%;
+    width: calc(100% - 10px);
+    margin-left: 5px;
+    border-radius: 12px;
     z-index: 1; 
-}
-
-.Map img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
 }
 
 .BookingBar {
     background-color: #42682f;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
     padding: 12px 24px;
     color: white;
     border-radius: 12px;
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 10px;
+    margin: 5px;
 }
 
-.BookingBar {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-}
-
-.LocationRow {
-    align-items: center;
-    display: flex;
-    gap: 10px;
-    width: 100%;
-}
-
-.DirectionButton {
-    background-color: rgb(17, 72, 17);
-    border-radius: 12px;
-    padding: 5px 10px;
-    cursor: pointer;
-    color: white;
-}
+.LocationRow { display: flex; gap: 10px; width: 100%; }
 
 #User_Location, #User_DropOff {
     background-color: white;
     color: gray;
     border-radius: 12px;
-    padding: 5px 10px;
+    padding: 8px 12px;
     width: 50%;
-    box-sizing: border-box; 
     border: none;
 }
 
-.ModesOfTranspo {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-}
-
-.BorderFortranspoTypes {
+.DirectionButton, .BorderFortranspoTypes {
     background-color: rgb(17, 72, 17);
     border-radius: 12px;
     color: white;
-    padding: 5px 10px;
+    padding: 8px 12px;
     cursor: pointer;
+    border: none;
 }
+
+.ModesOfTranspo { display: flex; gap: 10px; flex-wrap: wrap; }

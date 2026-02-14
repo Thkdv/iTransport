@@ -10,10 +10,8 @@ let routeLine = null;
 
 function onLocationFound(e) {
     if (pickupMarker) map.removeLayer(pickupMarker);
-    
     pickupMarker = L.marker(e.latlng, {draggable: true}).addTo(map)
         .bindPopup("Pick-up Point").openPopup();
-    
     document.getElementById("User_Location").value = "Current Location Found";
 }
 
@@ -21,11 +19,12 @@ function drawSimpleRoute() {
     if (pickupMarker && dropoffMarker) {
         if (routeLine) map.removeLayer(routeLine);
         var coords = [pickupMarker.getLatLng(), dropoffMarker.getLatLng()];
-        routeLine = L.polyline(coords, {color: '#42682f', weight: 5}).addTo(map);
+        routeLine = L.polyline(coords, {color: '#ffffff', weight: 5, dashArray: '10, 10'}).addTo(map);
         map.fitBounds(routeLine.getBounds());
     }
 }
 
+// SEARCH BOX LOGIC
 var geocoder = L.Control.geocoder({
     defaultMarkGeocode: false,
     placeholder: "Search for destination..."
@@ -33,10 +32,8 @@ var geocoder = L.Control.geocoder({
 .on('markgeocode', function(e) {
     var latlng = e.geocode.center;
     if (dropoffMarker) map.removeLayer(dropoffMarker);
-    
     dropoffMarker = L.marker(latlng, {draggable: true}).addTo(map)
         .bindPopup(e.geocode.name).openPopup();
-    
     document.getElementById("User_DropOff").value = e.geocode.name;
     drawSimpleRoute();
 })
@@ -53,10 +50,7 @@ map.on('click', function(e) {
     }
 });
 
-function onLocationError(e) { 
-    alert("Location error: " + e.message); 
-}
-
+function onLocationError(e) { alert("GPS Signal Weak: " + e.message); }
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
