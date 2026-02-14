@@ -4,31 +4,47 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
    attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-var marker = L.marker([14.3278, 120.9458]).addTo(map)
-    .bindPopup('Villa Nicasia, Dasmarinas')
-    .openPopup();
+let pickupMarker = null;
+let dropoffMarker = null;
+let routeLine = null;
 
 function onLocationFound(e) {
-    var radius = Math.round(e.accuracy / 2);
-
-    L.marker(e.latlng).addTo(map)
-        .bindPopup("You are within " + radius + " meters of this point").openPopup();
-
-    L.circle(e.latlng, radius).addTo(map);
-
-    document.getElementById("User_Location").value = "Current Location Found";
+    if (pickupMarker) map.removeLayer(pickupMarker);
+    
+    pickupMarker = L.marker(e.latlng, {draggable: true}).addTo(map)
+        .bindPopup("Pick-up Point").openPopup();
+    
+    document.getElementById("User_Location").value = e.latlng.lat.toFixed(4) + ", " + e.latlng.lng.toFixed(4);
 }
 
-function onLocationError(e) {
-    alert("Location access denied or timed out: " + e.message);
+function drawSimpleRoute() {
+    if (pickupMarker && dropoffMarker) {
+        if (routeLine) map.removeLayer(routeLine);
+        
+        var coords = [pickupMarker.getLatLng(), dropoffMarker.getLatLng()];
+        routeLine = L.polyline(coords, {color: '#42682f', weight: 5}).addTo(map);
+        map.fitBounds(routeLine.getBounds());
+    }
+}
+
+map.on('click', function(e) {
+    if (!pickupMarker) {
+        onLocationFound(e);
+    } else if (!dropoffMarker) {
+        dropoffMarker = L.marker(e.latlng, {draggable: true}).addTo(map)
+            .bindPopup("Drop-off Point").openPopup();
+        
+        document.getElementById("User_DropOff").value = e.latlng.lat.toFixed(4) + ", " + e.latlng.lng.toFixed(4);
+        drawSimpleRoute();
+    }
+});
+
+function onLocationError(e) { 
+    alert("Location error: " + e.message); 
 }
 
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
-map.locate({
-    setView: true, 
-    maxZoom: 17, 
-    enableHighAccuracy: true, 
-    timeout: 10000 
-});
+
+map.locate({setView: true, maxZoom: 17, enableHighAccuracy: true});
 
