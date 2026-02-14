@@ -14,18 +14,33 @@ function onLocationFound(e) {
     pickupMarker = L.marker(e.latlng, {draggable: true}).addTo(map)
         .bindPopup("Pick-up Point").openPopup();
     
-    document.getElementById("User_Location").value = e.latlng.lat.toFixed(4) + ", " + e.latlng.lng.toFixed(4);
+    document.getElementById("User_Location").value = "Current Location Found";
 }
 
 function drawSimpleRoute() {
     if (pickupMarker && dropoffMarker) {
         if (routeLine) map.removeLayer(routeLine);
-        
         var coords = [pickupMarker.getLatLng(), dropoffMarker.getLatLng()];
         routeLine = L.polyline(coords, {color: '#42682f', weight: 5}).addTo(map);
         map.fitBounds(routeLine.getBounds());
     }
 }
+
+var geocoder = L.Control.geocoder({
+    defaultMarkGeocode: false,
+    placeholder: "Search for destination..."
+})
+.on('markgeocode', function(e) {
+    var latlng = e.geocode.center;
+    if (dropoffMarker) map.removeLayer(dropoffMarker);
+    
+    dropoffMarker = L.marker(latlng, {draggable: true}).addTo(map)
+        .bindPopup(e.geocode.name).openPopup();
+    
+    document.getElementById("User_DropOff").value = e.geocode.name;
+    drawSimpleRoute();
+})
+.addTo(map);
 
 map.on('click', function(e) {
     if (!pickupMarker) {
@@ -33,7 +48,6 @@ map.on('click', function(e) {
     } else if (!dropoffMarker) {
         dropoffMarker = L.marker(e.latlng, {draggable: true}).addTo(map)
             .bindPopup("Drop-off Point").openPopup();
-        
         document.getElementById("User_DropOff").value = e.latlng.lat.toFixed(4) + ", " + e.latlng.lng.toFixed(4);
         drawSimpleRoute();
     }
@@ -46,5 +60,10 @@ function onLocationError(e) {
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
-map.locate({setView: true, maxZoom: 17, enableHighAccuracy: true});
-
+map.locate({
+    setView: true, 
+    maxZoom: 17, 
+    enableHighAccuracy: true,
+    timeout: 60000,
+    maximumAge: 0
+});
