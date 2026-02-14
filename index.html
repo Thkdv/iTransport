@@ -1,51 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iTransport</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="Style.css">
 </head>
 <body>
-    <div class="NavigationBar">
-        <div class="Logo"><strong>iTransport(Logo)</strong></div>
-        <input type="checkbox" id="menuToggle">
-        <label for="menuToggle" class="Hamburger">☰</label>
-        <div class="SideMenu">
-            <ul>
-                <li><a href="Index.html">←</a></li>
-                <li><a href="Profile/Profile.html">Profile</a></li>
-                <li><a href="Settings/Settings.html">Settings</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
-        </div>
+<div class="NavigationBar">
+    <div class="Logo"><strong>iTransport(Logo)</strong></div>
+    <input type="checkbox" id="menuToggle">
+    <label for="menuToggle" class="Hamburger">☰</label>
+    <div class="SideMenu">
+        <ul>
+            <li><a href="Index.html">←</a></li>
+            <li><a href="Profile/Profile.html">Profile</a></li>
+            <li><a href="Settings/Settings.html">Settings</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
     </div>
-
+</div>
     <div class="Map">
-        <div id="map"></div>
+        <div id="map" style="height: 400px; width: 100%; border-radius: 12px;"></div>
     </div>
-
     <div class="BookingBar">
         <div class="ModesOfTranspo">
-            <button class="BorderFortranspoTypes">Walk</button>
-            <button class="BorderFortranspoTypes">Jeep</button>
-            <button class="BorderFortranspoTypes">Bus</button>
-            <button class="BorderFortranspoTypes">Motor</button>
-            <button class="BorderFortranspoTypes">Car</button>
-            <button class="BorderFortranspoTypes">Tricycle</button>
+            <button href="#" class="BorderFortranspoTypes">Walk</button>
+            <button href="#" class="BorderFortranspoTypes">Jeep</button>
+            <button href="#" class="BorderFortranspoTypes">Bus</button>
+            <button href="#" class="BorderFortranspoTypes">Motor</button>
+            <button href="#" class="BorderFortranspoTypes">Car</button>
+            <button href="#" class="BorderFortranspoTypes">Tricycle</button>
         </div>
         <div class="LocationRow">
-            <input id="User_Location" placeholder="Pick up Location">
+            <input id="User_Location" placeholder="Pick up Location"></input>
             <button class="DirectionButton">Directions ↱</button>
         </div>
-        <input id="User_DropOff" placeholder="Drop off Location">
+        <input id="User_DropOff" placeholder="Drop off Location"></input>
+        
     </div>
-
-    <script src="https://cdn.jsdelivr.net"></script>
-    <script src="https://cdn.jsdelivr.net"></script>
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="Script.js"></script>
 </body>
 </html>
